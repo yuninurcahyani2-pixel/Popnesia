@@ -202,7 +202,7 @@ $("#search-toggle").addEventListener("click", () => {
 function runSearch(q) {
   const term = q.trim().toLocaleLowerCase("id-ID");
   if (!term) return tampilBeranda();
-  const hasil = urut.filter((a) => [a.judul, a.ringkasan, a.penulis, a.kategori, ...a.isi].join(" ").toLocaleLowerCase("id-ID").includes(term));
+  const hasil = urut.filter((a) => [a.judul, a.ringkasan, a.penulis, a.kategori, ...(a.kataKunci || []), ...a.isi].join(" ").toLocaleLowerCase("id-ID").includes(term));
   tampilDaftar(`Hasil pencarian: “${q.trim()}”`, hasil);
   noResults.textContent = hasil.length ? "" : "Tidak ada berita yang cocok dengan pencarianmu.";
 }
@@ -269,10 +269,19 @@ function bukaArtikel(id) {
   a.isi.forEach((t) => { const sub = t.startsWith("## "); const p = document.createElement(sub ? "h3" : "p"); p.textContent = sub ? t.slice(3) : t; body.appendChild(p); });
   const src = $("#dialog-sources");
   src.replaceChildren();
-  if (a.kategori === "Editorial") { const n = document.createElement("p"); n.className = "Editorial-note"; n.textContent = "Editorial: tulisan ini mencerminkan pandangan penulis."; src.appendChild(n); }
+  if (a.kategori === "Editorial") { const n = document.createElement("p"); n.className = "editorial-note"; n.textContent = "Editorial: tulisan ini mencerminkan pandangan penulis."; src.appendChild(n); }
   if (a.sumber && a.sumber.length) {
     const h = document.createElement("h3"); h.textContent = "Sumber"; src.appendChild(h);
     const ul = document.createElement("ul"); a.sumber.forEach((t) => { const li = document.createElement("li"); li.textContent = t; ul.appendChild(li); }); src.appendChild(ul);
+  }
+  if (a.kataKunci && a.kataKunci.length) {
+    const wrap = document.createElement("div"); wrap.className = "dialog-tags";
+    a.kataKunci.forEach((k) => {
+      const b = document.createElement("button"); b.type = "button"; b.className = "dialog-tag"; b.textContent = k;
+      b.addEventListener("click", () => { tutup(); $("#search-form").hidden = false; $("#search-input").value = k; runSearch(k); });
+      wrap.appendChild(b);
+    });
+    src.appendChild(wrap);
   }
   if (typeof dialog.showModal === "function") { if (!dialog.open) dialog.showModal(); } else alert(a.judul + "\n\n" + a.ringkasan);
   dialog.scrollTop = 0;

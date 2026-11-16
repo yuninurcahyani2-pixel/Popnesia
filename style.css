@@ -303,3 +303,6 @@ img { max-width: 100%; }
   .nav-links::-webkit-scrollbar { display: none; }
   .nav-links a { flex: 0 0 auto; }
 }
+.dialog-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.dialog-tag { padding: 6px 12px; border: 1px solid var(--line); border-radius: 99px; background: transparent; color: var(--navy); font: 700 12px var(--font-sans); cursor: pointer; }
+.dialog-tag:hover { background: var(--yellow); border-color: var(--yellow); color: #0b2444; }
