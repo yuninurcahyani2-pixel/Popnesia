@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Popnesia — Fakta, Cerita, Indonesia. Berita anak muda, lifestyle, hiburan, dan tren.">
+  <title>Popnesia — Fakta, Cerita, Indonesia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500..800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>try{var t=localStorage.getItem("popnesia-tema");if(!t)t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.dataset.theme=t}catch(e){}</script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="topbar wrap">
+      <a class="brand" href="index.html" aria-label="Popnesia beranda">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="brand-word">Popnesia<span class="brand-dot">.com</span><span class="brand-underline"></span></span>
+      </a>
+      <span class="tagline">Fakta, Cerita, Indonesia</span>
+      <div class="top-actions">
+        <time id="today-date"></time>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Ganti ke mode gelap"><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.500 4 8.500 8.500 0 1 0 20 14.500z"/></svg><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.500v2.500M12 19v2.500M2.500 12H5M19 12h2.500M5.300 5.300l1.800 1.800M16.900 16.900l1.800 1.800M5.300 18.700l1.800-1.800M16.900 7.100l1.800-1.800"/></svg></button>
+        <button class="search-toggle" id="search-toggle" aria-label="Buka pencarian">⌕</button>
+      </div>
+    </div>
+    <form class="searchbar wrap" id="search-form" hidden>
+      <label class="sr-only" for="search-input">Cari berita</label>
+      <input id="search-input" type="search" placeholder="Cari berita Popnesia...">
+      <button type="submit">Cari</button>
+    </form>
+    <nav class="main-nav" aria-label="Navigasi utama">
+      <div class="nav-inner wrap">
+        <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="nav-links">☰ Menu</button>
+        <div class="nav-links" id="nav-links">
+          <a class="active" href="#beranda">Beranda</a>
+          <a href="#nasional" data-category="Nasional">Nasional</a>
+          <a href="#daerah" data-category="Daerah">Daerah</a>
+          <a href="#politik" data-category="Politik">Politik</a>
+          <a href="#ekonomi" data-category="Ekonomi">Ekonomi</a>
+          <a href="#pendidikan" data-category="Pendidikan">Pendidikan</a>
+          <a href="#kesehatan" data-category="Kesehatan">Kesehatan</a>
+          <a href="#dunia" data-category="Dunia">Dunia</a>
+          <a href="#olahraga" data-category="Olahraga">Olahraga</a>
+          <a href="#editorial" data-category="Editorial">Editorial</a>
+          <a href="#feature" data-category="Feature">Feature</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="wrap page-content" id="beranda">
+    <div id="home-view">
+      <section class="lead-grid" aria-label="Berita utama dan terpopuler">
+        <article class="hero story-card" id="hero"></article>
+        <aside class="popular panel">
+          <div class="section-heading"><h2><span class="flame" id="flame-icon"></span> Terpopuler</h2><span class="heading-line"></span></div>
+          <div id="popular-list"></div>
+        </aside>
+      </section>
+      <div class="content-grid">
+        <div id="category-cards" class="cards-wrapper"></div>
+        <aside class="dont-miss panel" id="semua-berita">
+          <div class="section-heading"><h2>Jangan Lewatkan</h2><span class="heading-line"></span></div>
+          <div id="dontmiss-list"></div>
+        </aside>
+      </div>
+    </div>
+
+    <section id="category-view" hidden aria-live="polite">
+      <div class="section-heading"><h2 id="category-title"></h2><span class="heading-line"></span><button type="button" class="back-home" id="back-home">← Kembali ke beranda</button></div>
+      <div class="cat-list" id="category-list"></div>
+    </section>
+    <p class="no-results" id="no-results" hidden>Tidak ada berita yang cocok.</p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-main wrap">
+      <div class="footer-brand">
+        <a class="brand brand-footer" href="#beranda"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span class="brand-word">Popnesia<span class="brand-dot">.com</span><span class="brand-underline"></span></span></a>
+        <p>Fakta, Cerita, Indonesia</p>
+      </div>
+      <div class="footer-col"><h2>Ikuti Kami</h2><div class="socials" id="socials"><button type="button" class="social-btn" data-sosmed="instagram" aria-label="Instagram"></button><button type="button" class="social-btn" data-sosmed="facebook" aria-label="Facebook"></button><button type="button" class="social-btn" data-sosmed="youtube" aria-label="YouTube"></button></div></div>
+      <div class="footer-col"><h2>Informasi</h2><a href="#tentang" class="info-link" data-info="tentang">Tentang Kami</a><a href="#redaksi" class="info-link" data-info="redaksi">Redaksi</a><a href="#pedoman" class="info-link" data-info="pedoman">Pedoman Media Siber</a><a href="#kontak" class="info-link" data-info="kontak">Kontak Redaksi</a></div>
+      <form class="newsletter" id="newsletter-form"><label for="newsletter-email">Dapatkan berita terbaru<br>langsung di email Anda</label><div><input id="newsletter-email" type="email" placeholder="Masukkan email Anda" required><button type="submit">Berlangganan</button></div><p id="newsletter-message" aria-live="polite"></p></form>
+    </div>
+    <div class="footer-bottom"><div class="wrap"><span>© <span id="year"></span> Popnesia. Hak cipta dilindungi.</span><span>Fakta, Cerita, Indonesia</span></div></div>
+  </footer>
+
+  <dialog class="article-dialog" id="article-dialog">
+    <button class="dialog-close" id="dialog-close" aria-label="Tutup artikel">×</button>
+    <span class="category" id="dialog-category">Muda</span>
+    <h2 id="dialog-title">Judul berita</h2>
+    <p class="dialog-meta" id="dialog-meta"></p>
+    <p class="dialog-views" id="dialog-views" hidden></p>
+    <img id="dialog-image" src="" alt="">
+    <p class="dialog-credit" id="dialog-credit" hidden></p>
+    <p id="dialog-lead"></p>
+    <div id="dialog-body"></div>
+    <div id="dialog-sources"></div>
+  </dialog>
+  <dialog class="article-dialog info-dialog" id="info-dialog">
+    <button class="dialog-close" id="info-close" aria-label="Tutup">×</button>
+    <span class="category">Informasi</span>
+    <h2 id="info-title"></h2>
+    <div id="info-body"></div>
+  </dialog>
+  <dialog class="article-dialog info-dialog social-dialog" id="social-dialog">
+    <button class="dialog-close" id="social-close" aria-label="Tutup">×</button>
+    <div class="social-card">
+      <span class="social-card__icon" id="social-icon"></span>
+      <h2 id="social-name"></h2>
+      <p class="social-card__user" id="social-user"></p>
+      <div class="social-card__actions"><button type="button" id="social-copy">Salin username</button><a id="social-open" href="#" target="_blank" rel="noopener" hidden>Buka akun</a></div>
+      <p class="social-card__msg" id="social-msg" role="status"></p>
+    </div>
+  </dialog>
+  <script src="artikel.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
